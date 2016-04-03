@@ -1,0 +1,29 @@
+<project name="minimal-json" basedir="." default="compile">
+
+    <property name="src.dir"     value="com.eclipsesource.json/src/main/java"/>
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+
+    <path id="project.classpath">
+        <pathelement location="${classes.dir}" />
+    <!-- <pathelement location="com.eclipsesource.json/src/test/java/" /> -->
+    </path>
+
+    <target name="clean" description="Remove build directories">
+        <delete dir="${build.dir}"/>
+    </target>
+    
+    <target name="compile" description="Compile Project">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}" />
+        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}" debug="true">
+          <classpath refid="project.classpath" />
+          <compilerarg line="-XDignore.symbol.file" />
+          <compilerarg line="-Xlint:all" />
+        </javac>
+    </target>
+
+    <target name="jar" depends="compile" description="Package as JAR">
+        <jar destfile="${build.dir}/minimal-json.jar" basedir="${classes.dir}"></jar>
+    </target>
+</project>
