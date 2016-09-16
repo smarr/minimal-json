@@ -26,4 +26,8 @@
     <target name="jar" depends="compile" description="Package as JAR">
         <jar destfile="${build.dir}/minimal-json.jar" basedir="${classes.dir}"></jar>
     </target>
+
+    <target name="source-jar" depends="compile" description="Package Source as JAR">
+        <jar destfile="${build.dir}/minimal-json-source.jar" basedir="${src.dir}"></jar>
+    </target>
 </project>
